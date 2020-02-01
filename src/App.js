@@ -1,24 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Header from './components/Header'
+import ImageGrid from './components/ImageGrid'
 
-function App() {
+const App = () => {
+  const [loading, setLoading] = useState(false);
+  const [contentArea, setContentArea] = useState(false);
+  const [images, setImages] = useState([]);
+
+  const searchImages = async val => {
+    if (val) {
+      setContentArea(true);
+      setLoading(true);
+    } else {
+      setContentArea(false);
+      setLoading(false);
+    }
+    return Promise.resolve(true);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header
+        contentAreaShowing={contentArea}
+        searchImages={searchImages}
+      />
+      <ImageGrid
+        loading={loading}
+        contentAreaShowing={contentArea}
+        images={images}
+      />
     </div>
   );
 }
