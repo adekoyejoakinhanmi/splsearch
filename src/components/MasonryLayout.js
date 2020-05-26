@@ -11,7 +11,7 @@ const fillCols = (children, columns) => {
   children.forEach((child, index) => columns[index % columns.length].push(child))
 }
 
-function MasonryLayout({ children, gap, minWidth = 500, ...rest }) {
+function MasonryLayout({ children, gap, minWidth, ...rest }) {
   const ref = useRef();
   const [numCols, setNumCols] = useState(3);
   const cols = [...Array(numCols)].map(() => []);
@@ -37,11 +37,12 @@ function MasonryLayout({ children, gap, minWidth = 500, ...rest }) {
 
 MasonryLayout.propTypes = {
   gap: PropTypes.string,
-  children: PropTypes.arrayOf(PropTypes.element)
+  minWidth: PropTypes.number
 }
 
 MasonryLayout.defaultProps = {
-  gap: '1rem'
+  gap: '1rem',
+  minWidth: 300
 }
 
 

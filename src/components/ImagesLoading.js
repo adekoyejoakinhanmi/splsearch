@@ -1,16 +1,16 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 import MasonryLayout from './MasonryLayout';
 
-const ImagesLoading = () => {
+const ImagesLoading = ({ gutter = "1.4rem" }) => {
   const divs = [
     '10em',
-    '7em',
-    '9em',
+    '17em',
+    '20em',
     '13em',
-    '8em',
+    '18em',
     '10em'
   ]
-  const gutter = "1.4rem";
 
   return (
     <MasonryLayout gap={gutter}>
@@ -29,5 +29,7 @@ const ImagesLoading = () => {
     </MasonryLayout>
   )
 }
-
+ImagesLoading.propTypes = {
+  gutter: PropTypes.string,
+}
 export default ImagesLoading

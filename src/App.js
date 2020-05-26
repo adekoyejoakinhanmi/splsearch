@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles/App.css';
 import Header from './components/Header'
-import ImageGrid from './components/ImageGrid'
+import ContentArea from './components/ContentArea'
+import { getImages } from './api';
 
 const App = () => {
   const [loading, setLoading] = useState(false);
@@ -9,22 +10,32 @@ const App = () => {
   const [images, setImages] = useState([]);
 
   const searchImages = async val => {
-    if (val) {
-      setContentArea(true);
+    try {
       setLoading(true);
-    } else {
+      setContentArea(true);
+      const res = await getImages(val);
+      setImages(res.results);
+    } catch (error) {
+      setImages([]);
       setContentArea(false);
-      setLoading(false);
+    } finally {
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000)
     }
-    return Promise.resolve(true);
   }
+
+  useEffect(() => {
+    searchImages('African')
+  }, [])
+
   return (
     <div>
       <Header
         contentAreaShowing={contentArea}
         searchImages={searchImages}
       />
-      <ImageGrid
+      <ContentArea
         loading={loading}
         contentAreaShowing={contentArea}
         images={images}
