@@ -1,15 +1,18 @@
-import React from 'react'
+import React, {Fragment} from 'react'
+import ImageLoading from './ImagesLoading';
 import PropTypes from 'prop-types'
 
 const ImageGrid = ({ loading, contentAreaShowing }) => {
+  const visibleComponent = loading ? <ImageLoading /> : <div>Some Images here</div>;
   return (
-  <>
-    { contentAreaShowing &&
-        (<div className="container" >
-          searching
+    <Fragment>
+      {
+        contentAreaShowing &&
+        (<div className="container">
+          {visibleComponent}
         </div>)
       }
-  </>
+    </Fragment>
   )
 }
 

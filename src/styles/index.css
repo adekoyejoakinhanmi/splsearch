@@ -114,3 +114,55 @@ button.icon-btn {
 button.icon-btn:focus {
   outline: none;
 }
+
+.mason-div {
+  display: grid;
+  grid-auto-flow: column;
+}
+.mason-col {
+  display: flex;
+  flex-direction: column;
+}
+.img-wrapper {
+  border-radius: 8px;
+  position: relative;
+}
+.loading-img {
+  background: #eeeeee;
+  height: 100%;
+  animation: fading 1.5s infinite;
+  border-radius: 5px;
+}
+.info {
+  position: absolute;
+  width: 100%;
+  z-index: 9;
+  padding-bottom: 1.5rem;
+  padding-left: 1.5rem;
+  left: 0;
+  bottom: 0;
+}
+.loading-img .info .title {
+  width: 40%;
+  height: 10px;
+  margin-bottom: 10px;
+  background: rgba(0, 0, 0, 0.05);
+}
+.loading-img .info .location {
+  width: 35%;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.05);
+}
+@keyframes fading {
+  0% {
+    opacity: .7;
+  }
+  
+  50% {
+    opacity: .9;
+  }
+  
+  100% {
+    opacity: .7;
+  }
+}
