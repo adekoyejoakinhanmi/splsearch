@@ -5,6 +5,6 @@ const ACCESS_KEY = 'cf57663eec5448ba74ddb9fce13cb4a4c0de6773441049147485d5a62fe8
 export const getImages = term => {
   return axios({
     method: 'GET',
-    url: `https://api.unsplash.com/search/photos?per_page=9&query=${term}&client_id=${ACCESS_KEY}`
+    url: `https://api.unsplash.com/search/photos?query=${term}&client_id=${ACCESS_KEY}`
   }).then(res => res.data).catch(() => []);
 }
