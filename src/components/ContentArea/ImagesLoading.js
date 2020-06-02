@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MasonryLayout from './MasonryLayout';
+import MasonryLayout from '../MasonryLayout';
 
 const ImagesLoading = ({ gutter = "1.4rem" }) => {
   const divs = [

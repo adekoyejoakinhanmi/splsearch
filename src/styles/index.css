@@ -148,13 +148,13 @@ button.icon-btn:focus {
   position: relative;
   overflow: hidden;
   border-radius: 1rem;
+  cursor: pointer;
+  transition: transform 0.5s ease;
 }
 .image img {
   width: 100%;
   border-radius: 1rem;
   z-index: 4;
-  height: 100%;
-  object-fit: cover;
 }
 .info {
   position: absolute;
@@ -164,7 +164,7 @@ button.icon-btn:focus {
   left: 0;
   top: 0;
   bottom: 0;
-  padding: 1rem;
+  padding: 1.7rem 1rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -184,16 +184,40 @@ button.icon-btn:focus {
 .proper-grids {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  grid-auto-rows: 20px;
-  grid-row-gap: 30px;
   column-gap: 40px;
+  margin-bottom: 4em;
 }
-.proper-grids .img-wrapper:nth-child(even) {
-  grid-row-end: span 4;
+.proper-grids .info {
+  color: white;
+  background-image: linear-gradient(
+    rgba(0,0,0, 0.01),
+    rgba(0, 0, 0, 0.04), 
+    rgba(0, 0, 0, 0.2), 
+    rgba(0, 0, 0, 0.8)
+  );
+}
+.proper-grids .info .title {
+  font-weight: 700;
+}
+.proper-grids .info .location {
+  font-size: 0.8rem;
+}
+.proper-grids .image:hover {
+  transform: scale(1.05);
+}
+.empty-state {
+  text-align: center;
+}
+.empty-state .img {
+  max-width: 140px;
+  margin: 90px auto 25px;
+}
+.empty-state .text {
+  font-size: 22px;
 }
 @keyframes fading {
   0% {
-    opacity: .7;
+    opacity: .6;
   }
   
   50% {
@@ -201,6 +225,6 @@ button.icon-btn:focus {
   }
   
   100% {
-    opacity: .7;
+    opacity: .6;
   }
 }

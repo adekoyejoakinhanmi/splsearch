@@ -1,17 +1,22 @@
-import React, {useState} from 'react'
-import PropTypes from 'prop-types'
+import React from 'react'
+import PropTypes from 'prop-types';
 
 const Search = props => {
-  const [searchText, setSearchText] = useState('');
   const {
-    searchImages
+    searchText,
+    searchImages,
+    setSearchText
   } = props;
   const handleChange = (e) => setSearchText(e.target.value);
-  const clearSearch = () => setSearchText('');
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e && e.preventDefault();
     searchImages(searchText.trim())
   }
+  const clearSearch = () => {
+    setSearchText('')
+    searchImages();
+  };
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -39,7 +44,7 @@ const Search = props => {
 }
 
 Search.propTypes = {
-  searchImages: PropTypes.func.isRequired,
+  searchImages: PropTypes.func.isRequired
 }
 
 export default Search

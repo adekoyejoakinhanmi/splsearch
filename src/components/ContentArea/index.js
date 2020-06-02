@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react'
 import ImageLoading from './ImagesLoading';
+import EmptyState from './EmptyState';
 import PropTypes from 'prop-types'
 import ImagesGrid from './ImagesGrid';
 
@@ -7,18 +8,24 @@ const ImageGrid = ({ loading, images, contentAreaShowing }) => {
   
   const gutter = "1.4rem";
 
+  const imageComponent = images.length
+    ? <ImagesGrid images={images} gutter={gutter} />
+    : <EmptyState />
+
   const visibleComponent =
     loading
       ? <ImageLoading gutter={gutter} />
-      : <ImagesGrid images={images} gutter={gutter} />;
+      : imageComponent;
 
   return (
     <Fragment>
       {
         contentAreaShowing &&
-        (<div className="grid-container">
-          {visibleComponent}
-        </div>)
+        (
+          <div className="grid-container">
+            {visibleComponent}
+          </div>
+        )
       }
     </Fragment>
   )
