@@ -8,8 +8,14 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [contentArea, setContentArea] = useState(false);
   const [images, setImages] = useState([]);
+  const [searchText, setSearchText] = useState('');
 
   const searchImages = async val => {
+    if (!val) {
+      setContentArea(false);
+      setImages([]);
+      return;
+    }
     try {
       setLoading(true);
       setContentArea(true);
@@ -26,7 +32,10 @@ const App = () => {
   }
 
   useEffect(() => {
-    searchImages('African')
+    const randomSearchTerms = ['African', 'European', 'Coffee', 'Soup', 'Food'];
+    const term = randomSearchTerms[Math.floor(Math.random() * randomSearchTerms.length)]
+    setSearchText(term);
+    searchImages(term);
   }, [])
 
   return (
@@ -34,6 +43,8 @@ const App = () => {
       <Header
         contentAreaShowing={contentArea}
         searchImages={searchImages}
+        searchText={searchText}
+        setSearchText={setSearchText}
       />
       <ContentArea
         loading={loading}
